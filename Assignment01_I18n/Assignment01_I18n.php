@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: 01 - i18n
+ * Plugin Name: Assignment01_I18n
  * Description: A plugin for to test internationalization with gettext
  * Plugin URI: https://github.com/NAbdulla1/weDevs-intern-wp-assignment-plugins
  * Author: Md. Abdulla Al Mamun
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-final class _01_i18n {
+final class Assignment01_I18n {
 	const version = '1.0';
 
 	private function __construct() {
@@ -39,34 +39,34 @@ final class _01_i18n {
 	}
 
 	public function define_constants() {
-		define( "WD_ACADEMY_VERSION", self::version );
-		define( "WD_ACADEMY_FILE", __FILE__ );
-		define( "WD_ACADEMY_PATH", __DIR__ );
-		define( "WD_ACADEMY_URL", plugins_url( '', WD_ACADEMY_FILE ) );
-		define( "WD_ACADEMY_ASSETS", WD_ACADEMY_URL . '/assets' );
+		define( "A01_I18N_VERSION", self::version );
+		define( "A01_I18N_FILE", __FILE__ );
+		define( "A01_I18N_PATH", __DIR__ );
+		define( "A01_I18N_URL", plugins_url( '', A01_I18N_FILE ) );
+		define( "A01_I18N_ASSETS", A01_I18N_URL . '/assets' );
 	}
 
 	public function activate() {
-		$installed = get_option( 'wd_academy_installed', false );
+		$installed = get_option( 'a01_i18n_installed', false );
 		if ( ! $installed ) {
-			update_option( 'wd_academy_installed', time() );
+			update_option( 'a01_i18n_installed', time() );
 		}
-		update_option( 'wd_academy_version', WD_ACADEMY_VERSION );
+		update_option( 'a01_i18n_version', A01_I18N_VERSION );
 	}
 
 	public function init_plugin() {
 		if ( is_admin() ) {
-			new \WeDevs\Academy\Admin();
+			new \A01\i18n\Admin();
 		} else {
-			new \WeDevs\Academy\Frontend();
+			new \A01\i18n\Frontend();
 		}
 	}
 
 	public function addI18n( $translated_text, $old_text, $domain ) {
-		if ( $domain === 'wedevs-academy' && $old_text === 'weDevs Academy' ) {
+		if ( $domain === 'a01-i18n' && $old_text === 'weDevs Academy' ) {
 			$translated_text = 'weDevs একাডেমি';
 		}
-		if ( $domain === 'wedevs-academy' && $old_text === 'Academy' ) {
+		if ( $domain === 'a01-i18n' && $old_text === 'Academy' ) {
 			$translated_text = 'একাডেমি';
 		}
 
@@ -74,8 +74,8 @@ final class _01_i18n {
 	}
 }
 
-function wedevs_academy() {
-	return _01_i18n::init();
+function a01_i18n() {
+	return Assignment01_I18n::init();
 }
 
-wedevs_academy();
+a01_i18n();

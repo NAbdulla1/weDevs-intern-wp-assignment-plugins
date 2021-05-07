@@ -1,7 +1,7 @@
 <?php
 
 
-namespace WeDevs\Academy;
+namespace A01\i18n;
 
 
 class Frontend {

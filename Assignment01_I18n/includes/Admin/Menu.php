@@ -1,6 +1,6 @@
 <?php
 
-namespace WeDevs\Academy\Admin;
+namespace A01\i18n\Admin;
 
 class Menu {
 	public function __construct() {
@@ -8,7 +8,7 @@ class Menu {
 	}
 
 	public function admin_menu() {
-		add_menu_page( __( 'weDevs Academy', 'wedevs-academy' ), __( 'Academy', 'wedevs-academy' ), 'manage_options', 'wedevs-academy', [
+		add_menu_page( __( 'weDevs Academy', 'a01-i18n' ), __( 'Academy', 'a01-i18n' ), 'manage_options', 'a01-i18n', [
 			$this,
 			'plugin_page'
 		], 'dashicons-welcome-learn-more' );
