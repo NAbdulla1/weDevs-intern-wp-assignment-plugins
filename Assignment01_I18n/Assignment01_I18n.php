@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Assignment01_I18n
  * Description: A plugin for to test internationalization with gettext
- * Plugin URI: https://github.com/NAbdulla1/weDevs-intern-wp-assignment-plugins
+ * Plugin URI: https://github.com/NAbdulla1/weDevs-intern-wp-assignment-plugins/tree/main/Assignment01_I18n
  * Author: Md. Abdulla Al Mamun
  * Author URI: https://github.com/NAbdulla1
  * Version: 1.0
