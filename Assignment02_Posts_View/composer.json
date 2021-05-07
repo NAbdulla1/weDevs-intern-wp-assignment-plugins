@@ -1,0 +1,18 @@
+{
+  "name": "nayonwp/assignment02",
+  "description": "A wordpress plugin to count post's views",
+  "type": "wordpress-plugin",
+  "license": "GPL2",
+  "authors": [
+    {
+      "name": "Md. Abdulla Al Mamun",
+      "email": "nayonabdulla@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "A02_Posts_View_Counter\\": "includes"
+    }
+  }
+}
