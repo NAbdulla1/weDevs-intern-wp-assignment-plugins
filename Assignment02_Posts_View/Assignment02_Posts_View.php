@@ -27,7 +27,7 @@ final class Assignment02_Posts_View {
 	}
 
 	public static function init() {
-		$instance = false;
+		static $instance = false;
 		if ( ! $instance ) {
 			$instance = new self();
 		}
