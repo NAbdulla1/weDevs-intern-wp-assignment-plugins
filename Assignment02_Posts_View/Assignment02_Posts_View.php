@@ -53,7 +53,6 @@ final class Assignment02_Posts_View {
 
 	public function init_plugin() {
 		if ( is_admin() ) {
-			new \A02_Posts_View_Counter\Admin();
 		} else {
 			new \A02_Posts_View_Counter\Frontend();
 		}
