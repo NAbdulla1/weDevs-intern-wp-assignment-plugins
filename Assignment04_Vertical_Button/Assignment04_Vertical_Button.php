@@ -3,6 +3,7 @@
  * Plugin Name: Assignment04 Vertical Button
  * Description: A plugin to a vertical button at middle right of screen
  * Plugin URI: https://github.com/NAbdulla1/weDevs-intern-wp-assignment-plugins/tree/main/Assignment04_Vertical_Button
+ * Author: Md. Abdulla Al Mamun
  * Author URI: https://github.com/NAbdulla1
  * Version: 1.0
  * License: GPL2

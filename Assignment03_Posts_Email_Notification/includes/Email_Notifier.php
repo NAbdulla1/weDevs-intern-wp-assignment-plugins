@@ -26,9 +26,7 @@ class Email_Notifier {
 	 * @param $post_object
 	 */
 	public function new_post_published( $new_status, $old_status, $post_object ) {
-		Log::dbg( "new post: '$new_status', '$old_status'" );
 		if ( $new_status === "publish" && ( $old_status === 'draft' || $old_status === 'auto-draft' ) ) {
-			Log::dbg( "calling helpers: $new_status, $old_status" );
 			$this->send_email_to_admins( $post_object );
 			$this->send_email_to_others( $post_object );
 		}
