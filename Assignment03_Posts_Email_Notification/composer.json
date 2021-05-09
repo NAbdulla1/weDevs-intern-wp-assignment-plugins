@@ -1,0 +1,21 @@
+{
+  "name": "nayonwp/posts_email_notification",
+  "description": "A wordpress plugin to send email to admin when a new post is published",
+  "type": "wordpress-plugin",
+  "license": "GPL2",
+  "authors": [
+    {
+      "name": "Md. Abdulla Al Mamun",
+      "email": "nayonabdulla@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "monolog/monolog": "2.x-dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "A03_Posts_Email_Notification\\": "includes"
+    }
+  }
+}

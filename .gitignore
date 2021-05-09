@@ -2,3 +2,4 @@ akismet
 wedevs-academy
 /*.php
 vendor
+logs.log
