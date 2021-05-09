@@ -8,7 +8,7 @@ namespace A04_Vertical_Button\Frontend;
  * @package A04_Vertical_Button\Frontend
  */
 class Frontend_Vertical_Button {
-	private $buttonText = 'btn';
+	private string $buttonText = 'btn';
 
 	/**
 	 * Frontend_Vertical_Button constructor. adds a builtin and a custom hook
@@ -23,22 +23,27 @@ class Frontend_Vertical_Button {
 	 */
 	public function the_button() {
 		echo "
-			<button type='button'
-				style='
+			<div style='
+					padding: 0;
 					position: fixed;
 					right: 0;
 					bottom: 50vh;
+					transform: translate(0%, 50%);
+				'>
+				<button style='
+					position: absolute;
+					right: 0;
 					padding: 0 1.5rem;
 					color: whitesmoke;
+					border-top-right-radius: 5px;
+					border-top-left-radius: 5px; 
 					font-size: 1.5rem;
 					background-color: gray;
 					cursor: pointer;
-					border-top-left-radius: 10px;
-					border-top-right-radius: 10px;
 					transform-origin: 100% 100%;
-					transform: rotate(-90deg)  translate(50%, 0%);'>
-			$this->buttonText
-			</button>
+					transform: rotate(-90deg) translate(75%, 0%)'>$this->buttonText</button>
+				<p style='text-align: right; transform: translate(0, 210%);'>A sample Description</p>
+			</div>
 		";
 	}
 
