@@ -36,6 +36,8 @@ final class Assignment03_Posts_Email_Notification {
 	public function init_plugin() {
 		new \A03_Posts_Email_Notification\Email_Notifier();
 		$this->register_other_users();
+
+		new \A03_Posts_Email_Notification\CapitalizeTitle();
 	}
 
 	public function register_other_users() {
