@@ -15,7 +15,7 @@ class Log {
 	public static function dbg( $message ) {
 		if ( ! isset( self::$logger ) ) {
 			self::$logger = new Logger( 'debug-channel' );
-			self::$logger->pushHandler( new StreamHandler( __DIR__ . "/../../logs.log", Logger::DEBUG ) );
+			self::$logger->pushHandler( new StreamHandler( __DIR__ . "/../logs.log", Logger::DEBUG ) );
 		}
 		self::$logger->debug( $message );
 	}
