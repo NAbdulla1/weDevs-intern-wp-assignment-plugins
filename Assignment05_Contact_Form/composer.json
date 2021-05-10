@@ -1,0 +1,21 @@
+{
+  "name": "nayonwp/a05_contact_form",
+  "description": "A wordpress plugin to manage a contact form",
+  "type": "wordpress-plugin",
+  "require": {
+    "monolog/monolog": "2.x-dev"
+  },
+  "license": "GPL2",
+  "authors": [
+    {
+      "name": "Md. Abdulla Al Mamun",
+      "email": "nayonabdulla@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "A05_Contact_Form\\": "includes"
+    }
+  }
+}
