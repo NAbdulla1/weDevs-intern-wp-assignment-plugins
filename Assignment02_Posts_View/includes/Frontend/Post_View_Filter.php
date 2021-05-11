@@ -93,7 +93,7 @@ class Post_View_Filter {
 		if ( empty( $posts ) ) {
 			echo '<h3>No posts found</h3>';
 		} else {
-			echo '<table><tr><th>Post ID</th><th>Excerpt</th><th>View Count</th></tr>';
+			echo '<table><tr><th>Post ID</th><th>Title</th><th>View Count</th></tr>';
 			foreach ( $posts as $post ) {
 				echo "<tr><td>$post->ID</td><td>$post->post_title</td><td>$post->view_count</td></tr>";
 			}
