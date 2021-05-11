@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Assignment06 Post Excerpt
- * Description: A plugin to show a contact form
+ * Description: A plugin to add and display post excerpt
  * Plugin URI: https://github.com/NAbdulla1/weDevs-intern-wp-assignment-plugins/tree/main/Assignment06_Post_Excerpt
  * Author: Md. Abdulla Al Mamun
  * Author URI: https://github.com/NAbdulla1
@@ -55,6 +55,8 @@ class Assignment06_Post_Excerpt {
 	public function init_plugin() {
 		if ( is_admin() ) {
 			new \A06_Post_Excerpt\Admin();
+		} else {
+			new \A06_Post_Excerpt\Frontend();
 		}
 	}
 }
