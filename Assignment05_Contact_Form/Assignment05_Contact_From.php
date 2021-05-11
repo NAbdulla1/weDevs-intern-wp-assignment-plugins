@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Assignment05 Contact Form
  * Description: A plugin to show a contact form
- * Plugin URI: https://github.com/NAbdulla1/weDevs-intern-wp-assignment-plugins/tree/main/Assignment05_Contact_From
+ * Plugin URI: https://github.com/NAbdulla1/weDevs-intern-wp-assignment-plugins/tree/main/Assignment05_Contact_Form
  * Author: Md. Abdulla Al Mamun
  * Author URI: https://github.com/NAbdulla1
  * Version: 1.0
