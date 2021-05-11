@@ -1,0 +1,21 @@
+{
+  "name": "nayon/assignment06_post_excerpt",
+  "description": "A wordpress plugin for making post excerpt",
+  "type": "wordpress-plugin",
+  "license": "GPL2",
+  "authors": [
+    {
+      "name": "Md. Abdulla Al Mamun",
+      "email": "nayonabdulla@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "monolog/monolog": "2.x-dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "A06_Post_Excerpt\\": "includes"
+    }
+  }
+}
