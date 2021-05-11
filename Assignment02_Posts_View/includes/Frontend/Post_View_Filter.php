@@ -27,11 +27,12 @@ class Post_View_Filter {
 			'category'    => $category,
 			'include'     => $post_ids,
 			'numberposts' => $count,
-			'orderby'     => 'meta_value_num',
+			'orderby'     => 'view_count_numer',
 			'order'       => $order,
 			'meta_query'  => array(
-				array(
-					'key' => 'view_count',
+				'view_count_numer' => array(
+					'key'     => 'view_count',
+					'type'    => 'NUMERIC'
 				)
 			)
 		) );
