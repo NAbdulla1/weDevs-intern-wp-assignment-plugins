@@ -36,8 +36,10 @@ class Books_CPT {
 
 	/**
 	 * sets default category of the book post as 'Uncategorized'
+	 *
+	 * @param $post_id
 	 */
 	public function set_default_category( $post_id ) {
-		wp_set_object_terms( $post_id, '1', 'category' );
+		wp_set_object_terms( $post_id, 'Uncategorized', 'category' );
 	}
 }
