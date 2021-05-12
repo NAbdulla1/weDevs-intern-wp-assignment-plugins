@@ -7,6 +7,7 @@ namespace A07_Book_Review;
 class Books_CPT {
 	public function __construct() {
 		add_action( 'init', [ $this, 'register_book_custom_post_type' ] );
+		add_action( 'save_post', [ $this, 'set_default_category' ] );
 	}
 
 	public function register_book_custom_post_type() {
@@ -25,11 +26,18 @@ class Books_CPT {
 			'menu_name'          => 'Books'
 		);
 		$args   = array(
-			'labels'        => $labels,
-			'description'   => 'Holds our books and book specific data',
-			'public'        => true,
-			'has_archive'   => true,
+			'labels'      => $labels,
+			'description' => 'Holds our books and book specific data',
+			'public'      => true,
+			'has_archive' => true,
 		);
 		register_post_type( 'a07_book_review_book', $args );
+	}
+
+	/**
+	 * sets default category of the book post as 'Uncategorized'
+	 */
+	public function set_default_category( $post_id ) {
+		wp_set_object_terms( $post_id, '1', 'category' );
 	}
 }
