@@ -25,7 +25,8 @@ class View_Counter {
 	 * @return string
 	 */
 	public function add_view_count( $content ): string {
-		if ( is_single() ) {
+
+		if ( is_single() && ! $this->is_count_already_added( $content ) ) {
 			$postId = get_the_ID();
 			$this->init_view_count( $postId );
 			$count = $this->update_and_get_view_count( $postId );
@@ -36,6 +37,10 @@ class View_Counter {
 		}
 
 		return $content;
+	}
+
+	private function is_count_already_added( $content ): bool {
+		return preg_match( '/<p>Total View: <em>\d+<\/em><\/p>$/', $content ) === 1;
 	}
 
 	/**
@@ -70,6 +75,11 @@ class View_Counter {
 	 * @return string
 	 */
 	public function emphasise_count_value( $count ): string {
+		if ( substr( $count, 0, min( 4, strlen( $count ) ) ) === '<em>'
+		     || ( strlen( $count ) >= 5 && substr( $count, - 5 ) === '</em>' ) ) {
+			return $count;
+		}
+
 		return "<em>$count</em>";
 	}
 }
