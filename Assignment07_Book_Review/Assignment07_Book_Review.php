@@ -57,6 +57,8 @@ class Assignment07_Book_Review {
 		new \A07_Book_Review\Books_CPT();
 		if ( is_admin() ) {
 			new \A07_Book_Review\Admin();
+		} else {
+			new \A07_Book_Review\Frontend();
 		}
 	}
 }
