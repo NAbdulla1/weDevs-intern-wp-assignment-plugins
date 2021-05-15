@@ -23,7 +23,7 @@ class Books_CPT {
 			'search_items'       => esc_html__( 'Search Books', 'a07_book_review_text_domain'),
 			'not_found'          => esc_html__( 'No books found', 'a07_book_review_text_domain'),
 			'not_found_in_trash' => esc_html__( 'No books found in the Trash', 'a07_book_review_text_domain'),
-			'menu_name'          => 'Books'
+			'menu_name' => esc_html__( 'Books', 'a07_book_review_text_domain'),
 		);
 		$args   = array(
 			'labels'      => $labels,
