@@ -55,6 +55,7 @@ class Assignment07_Book_Review {
 
 	public function init_plugin() {
 		new \A07_Book_Review\Books_CPT();
+		new \A07_Book_Review\Book_Types();
 		if ( is_admin() ) {
 			new \A07_Book_Review\Admin();
 		} else {

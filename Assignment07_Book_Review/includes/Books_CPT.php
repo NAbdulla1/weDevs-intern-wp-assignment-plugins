@@ -12,17 +12,17 @@ class Books_CPT {
 
 	public function register_book_custom_post_type() {
 		$labels = array(
-			'name'               => _x( 'Books', 'post type general name' ),
-			'singular_name'      => _x( 'Book', 'post type singular name' ),
-			'add_new'            => _x( 'Add New', 'book' ),
-			'add_new_item'       => __( 'Add New Book' ),
-			'edit_item'          => __( 'Edit Book' ),
-			'new_item'           => __( 'New Book' ),
-			'all_items'          => __( 'All Books' ),
-			'view_item'          => __( 'View Book' ),
-			'search_items'       => __( 'Search Books' ),
-			'not_found'          => __( 'No books found' ),
-			'not_found_in_trash' => __( 'No books found in the Trash' ),
+			'name'               => esc_html_x( 'Books', 'post type general name', 'a07_book_review_text_domain'),
+			'singular_name'      => esc_html_x( 'Book', 'post type singular name', 'a07_book_review_text_domain'),
+			'add_new'            => esc_html_x( 'Add New', 'book', 'a07_book_review_text_domain'),
+			'add_new_item'       => esc_html__( 'Add New Book', 'a07_book_review_text_domain'),
+			'edit_item'          => esc_html__( 'Edit Book', 'a07_book_review_text_domain'),
+			'new_item'           => esc_html__( 'New Book', 'a07_book_review_text_domain'),
+			'all_items'          => esc_html__( 'All Books', 'a07_book_review_text_domain'),
+			'view_item'          => esc_html__( 'View Book', 'a07_book_review_text_domain'),
+			'search_items'       => esc_html__( 'Search Books', 'a07_book_review_text_domain'),
+			'not_found'          => esc_html__( 'No books found', 'a07_book_review_text_domain'),
+			'not_found_in_trash' => esc_html__( 'No books found in the Trash', 'a07_book_review_text_domain'),
 			'menu_name'          => 'Books'
 		);
 		$args   = array(
