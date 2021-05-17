@@ -33,6 +33,8 @@ class Assignment05_Contact_From {
 		}
 		if ( ! is_admin() ) {
 			new \A05_Contact_Form\Frontend();
+		} else {
+			new \A05_Contact_Form\Admin();
 		}
 	}
 
