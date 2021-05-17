@@ -16,6 +16,9 @@
   "autoload": {
     "psr-4": {
       "A05_Contact_Form\\": "includes"
-    }
+    },
+    "files": [
+      "includes/functions.php"
+    ]
   }
 }

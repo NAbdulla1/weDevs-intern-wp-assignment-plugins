@@ -17,11 +17,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once __DIR__ . '/vendor/autoload.php';
 
 class Assignment05_Contact_From {
+	const version = '1.0';
+
 	private function __construct() {
+		$this->define_constants();
+
+		register_activation_hook( __FILE__, [ $this, 'activate' ] );
 		add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
 	}
 
 	public function init_plugin() {
+		new \A05_Contact_Form\Assets();
+		if ( defined( 'DOING_AJAX' ) ) {
+			new \A05_Contact_Form\Ajax();
+		}
 		if ( ! is_admin() ) {
 			new \A05_Contact_Form\Frontend();
 		}
@@ -34,6 +43,19 @@ class Assignment05_Contact_From {
 		}
 
 		return $instance;
+	}
+
+	private function define_constants() {
+		define( "A05_CONTACT_FORM_VERSION", self::version );
+		define( "A05_CONTACT_FORM_FILE", __FILE__ );
+		define( "A05_CONTACT_FORM_PATH", __DIR__ );
+		define( "A05_CONTACT_FORM_URL", plugins_url( '', A05_CONTACT_FORM_FILE ) );
+		define( "A05_CONTACT_FORM_ASSETS", A05_CONTACT_FORM_URL . '/assets' );
+	}
+
+	public function activate() {
+		$installer = new \A05_Contact_Form\Installer();
+		$installer->run();
 	}
 }
 

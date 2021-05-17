@@ -4,20 +4,19 @@
 namespace A05_Contact_Form\Shortcode;
 
 
-use A05_Contact_Form\Log;
-
 class ContactForm {
 	public function __construct() {
 		add_shortcode( 'a05_contact_form', [ $this, 'contact_form_handler' ] );
 	}
 
 	public function contact_form_handler( $attrs, $content ) {
+		wp_enqueue_script( 'contact_form_script' );
 		$fname_error   = false;
 		$lname_error   = false;
 		$email_error   = false;
 		$message_error = false;
 		$email_sent    = false;
-		if ( ! empty( $_POST ) ) {
+		/*if ( ! empty( $_POST ) ) {
 			if ( empty( trim( $_POST['a05_contact_form_fname'] ) ) ) {
 				$fname_error = true;
 			}
@@ -42,10 +41,10 @@ class ContactForm {
 				//send actual email
 				$email_sent = true;
 			}
-		}
+		}*/
 		ob_start();
 		?>
-        <form method='post' action=''>
+        <form novalidate id="a05_cf_id">
 			<?php if ( $email_sent )
 				echo '<h2 style="color: forestgreen">Email sent successfully</h2>' ?>
             <h3 style="text-align: center">Contact us</h3>
@@ -88,6 +87,8 @@ class ContactForm {
 					<?php if ( $message_error )
 						echo '<small style="color: mediumvioletred; display: block; text-align: right;">Message is required</small>' ?>
                 </div>
+				<?php wp_nonce_field( 'a05_contact_form__nonce' ) ?>
+                <input type="hidden" name="action" value="a05_contact_form"/>
                 <div>
                     <button type='submit' style='float: right; padding: 5px 30px; margin: 0;'>Submit</button>
                 </div>
