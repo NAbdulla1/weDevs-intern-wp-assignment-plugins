@@ -9,6 +9,7 @@ class Ajax {
 
 	public function __construct() {
 		add_action( 'wp_ajax_a05_contact_form', [ $this, 'submit_contact_form' ] );
+		add_action( 'wp_ajax_nopriv_a05_contact_form', [ $this, 'submit_contact_form' ] );
 	}
 
 	public function submit_contact_form() {
