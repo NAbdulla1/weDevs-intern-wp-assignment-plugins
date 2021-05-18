@@ -46,16 +46,16 @@ class Assignment07_Book_Review {
 	}
 
 	public function activate() {
-		$installed = get_option( 'a07_book_review_installed', false );
-		if ( ! $installed ) {
-			update_option( 'a07_book_review_installed', time() );
-		}
-		update_option( 'a07_book_review_version', A07_BOOK_REVIEW_VERSION );
+		( new \A07_Book_Review\Installer() )->run();
 	}
 
 	public function init_plugin() {
 		new \A07_Book_Review\Books_CPT();
 		new \A07_Book_Review\Book_Types();
+		new \A07_Book_Review\Assets();
+		if ( wp_doing_ajax() ) {
+			new \A07_Book_Review\Ajax();
+		}
 		if ( is_admin() ) {
 			new \A07_Book_Review\Admin();
 		} else {
