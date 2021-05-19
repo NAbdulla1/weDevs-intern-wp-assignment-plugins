@@ -7,18 +7,7 @@ class Show_Featured_Posts_Shortcode {
 	}
 
 	public function get_shortcode( $attrs, $content ) {
-		$order = get_option( 'a08_featured_post_order' );
-		$args  = $order == 'rand' ? array(
-			'category__in' => get_option( 'a08_featured_post_categories' ),
-			'numberposts'  => get_option( 'a08_featured_posts_no_of_posts' ),
-			'orderby'      => $order,
-		) : array(
-			'category__in' => get_option( 'a08_featured_post_categories' ),
-			'numberposts'  => get_option( 'a08_featured_posts_no_of_posts' ),
-			'orderby'      => 'title',
-			'order'        => $order,
-		);
-		$posts = get_posts( $args );
+		$posts = Featured_Posts_Cache::get_posts();
 		ob_start();
 		?>
         <table>
