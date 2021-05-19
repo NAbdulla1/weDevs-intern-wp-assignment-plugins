@@ -1,6 +1,12 @@
-akismet
-wedevs-academy
-yet-another-stars-rating
-/*.php
+/*
 vendor
 logs.log
+/*.php
+!Assignment01_I18n
+!Assignment02_Posts_View
+!Assignment03_Posts_Email_Notification
+!Assignment04_Vertical_Button
+!Assignment05_Contact_Form
+!Assignment06_Post_Excerpt
+!Assignment07_Book_Review
+!Assignment_08_Featured_Posts
