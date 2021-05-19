@@ -1,0 +1,19 @@
+{
+  "name": "nayon/assignment_08_featured_posts",
+  "description": "A wordpress plugin to practice settings page api and object caching",
+  "type": "wordpress-plugin",
+  "license": "GPL2",
+  "authors": [
+    {
+      "name": "Md. Abdulla Al Mamun",
+      "email": "nayonabdulla@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "A08_Featured_Post\\": "includes"
+    }
+  }
+}
