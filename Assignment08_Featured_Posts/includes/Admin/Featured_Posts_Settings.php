@@ -47,7 +47,7 @@ class Featured_Posts_Settings {
 
 	public function post_order() {
 		$curOrder = get_option( "a08_featured_post_order" );
-		$options  = [ [ 'random', 'Random' ], [ 'asc', 'Ascending' ], [ 'desc', 'Descending' ] ];
+		$options  = [ [ 'rand', 'Random' ], [ 'asc', 'Ascending' ], [ 'desc', 'Descending' ] ];
 		?>
         <select name="a08_featured_post_order" id="a08_featured_post_order">
 			<?php foreach ( $options as $option ) { ?>
@@ -63,13 +63,14 @@ class Featured_Posts_Settings {
 		$categories = get_categories();
 		$curCat     = get_option( 'a08_featured_post_categories' );
 		$curCat     = empty( $curCat ) ? array() : $curCat;
+
 		?>
         <select class="selectable" multiple="multiple" name="a08_featured_post_categories[]"
                 id="a08_featured_post_categories">
 
 			<?php foreach ( $categories as $category ) { ?>
-                <option <?php echo( ( in_array( $category->slug, $curCat ) ) ? 'selected' : '' ) ?>
-                        value='<?php echo $category->slug ?>'>
+                <option <?php echo( ( in_array( $category->cat_ID, $curCat ) ) ? 'selected' : '' ) ?>
+                        value='<?php echo $category->cat_ID ?>'>
 					<?php _e( $category->name, 'a08_featured_posts' ) ?>
                 </option>
 			<?php } ?>

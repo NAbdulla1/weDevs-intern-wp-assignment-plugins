@@ -54,6 +54,8 @@ class Assignment08_Featured_Posts {
 	public function init_plugin() {
 		if ( is_admin() ) {
 			new \A08_Featured_Post\Admin();
+		} else {
+			new \A08_Featured_Post\Frontend();
 		}
 	}
 }
