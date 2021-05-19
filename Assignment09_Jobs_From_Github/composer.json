@@ -1,0 +1,19 @@
+{
+  "name": "nayonwp/assignment09_jobs_from_github",
+  "description": "A wordpress plugin to practice HTTP api of wordpress",
+  "minimum-stability": "dev",
+  "license": "GPL-2.0-only",
+  "authors": [
+    {
+      "name": "nayon",
+      "email": "nayonabdulla@gmail.com"
+    }
+  ],
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {
+      "A09_Jobs_From_Github\\": "includes"
+    }
+  }
+}
