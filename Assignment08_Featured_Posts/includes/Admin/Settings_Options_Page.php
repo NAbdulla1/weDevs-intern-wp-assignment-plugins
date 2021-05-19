@@ -16,12 +16,6 @@ class Settings_Options_Page {
 	}
 
 	public function page_content() {
-		echo json_encode( [
-			'a08_featured_posts_no_of_posts' => get_option( 'a08_featured_posts_no_of_posts' ),
-			'a08_featured_post_order'        => get_option( 'a08_featured_post_order' ),
-			'a08_featured_post_categories'   => get_option( 'a08_featured_post_categories' )
-		] );
-		$handler_location = admin_url() . 'options.php';
 		?>
         <form method="POST" action="options.php">
 			<?php

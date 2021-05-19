@@ -9,6 +9,10 @@ class Featured_Posts_Settings {
 	}
 
 	public function init_settings() {
+		register_setting( 'a08_featured_posts', 'a08_featured_post_categories' );
+		register_setting( 'a08_featured_posts', 'a08_featured_posts_no_of_posts' );
+		register_setting( 'a08_featured_posts', 'a08_featured_post_order' );
+
 		add_settings_section( 'setting_section', __( "Featured Posts Settings", 'a08_featured_posts' ), [
 			$this,
 			'setting_section_callback'
@@ -33,11 +37,12 @@ class Featured_Posts_Settings {
 	}
 
 	public function no_of_posts() {
+		$posts = get_option( "a08_featured_posts_no_of_posts" );
+		$posts = empty( $posts ) ? "0" : $posts;
 		?>
         <input name="a08_featured_posts_no_of_posts" id="a08_featured_posts_no_of_posts" type="text"
-               value="<?php echo get_option( "a08_featured_posts_no_of_posts" ) ?>"/>
+               value="<?php echo $posts ?>"/>
 		<?php
-		register_setting( 'a08_featured_posts', 'a08_featured_posts_no_of_posts' );
 	}
 
 	public function post_order() {
@@ -52,25 +57,24 @@ class Featured_Posts_Settings {
 			<?php } ?>
         </select>
 		<?php
-		register_setting( 'a08_featured_posts', 'a08_featured_post_order' );
 	}
 
 	public function post_categories() {
 		$categories = get_categories();
 		$curCat     = get_option( 'a08_featured_post_categories' );
+		$curCat     = empty( $curCat ) ? array() : $curCat;
 		?>
         <select class="selectable" multiple="multiple" name="a08_featured_post_categories[]"
                 id="a08_featured_post_categories">
 
 			<?php foreach ( $categories as $category ) { ?>
-                <option <?php echo( ( $category->slug === $curCat ) ? 'selected' : '' ) ?>
+                <option <?php echo( ( in_array( $category->slug, $curCat ) ) ? 'selected' : '' ) ?>
                         value='<?php echo $category->slug ?>'>
 					<?php _e( $category->name, 'a08_featured_posts' ) ?>
                 </option>
 			<?php } ?>
         </select>
 		<?php
-		register_setting( 'a08_featured_posts', 'a08_featured_post_categories' );
 	}
 
 	public function add_select2() {
