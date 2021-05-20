@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Assignment11 Cats Fact
  * Description: A plugin to work with dashboard widget and http api
- * Plugin URI: https://github.com/NAbdulla1/weDevs-intern-wp-assignment-plugins/tree/main/Assignment09_Jobs_From_Github
+ * Plugin URI: https://github.com/NAbdulla1/weDevs-intern-wp-assignment-plugins/tree/main/Assignment11_Cats_Fact
  * Author: Md. Abdulla Al Mamun
  * Author URI: https://github.com/NAbdulla1
  * Version: 1.0
