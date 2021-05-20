@@ -1,0 +1,21 @@
+{
+  "name": "nayon/assignment12_related_posts",
+  "description": "A wordpress plugin",
+  "type": "wordpress-plugin",
+  "license": "GPL2",
+  "authors": [
+    {
+      "name": "Md. Abdulla Al Mamun",
+      "email": "nayonabdulla@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "mailchimp/marketing": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "A13_Subscription_Form\\": "includes"
+    }
+  }
+}
