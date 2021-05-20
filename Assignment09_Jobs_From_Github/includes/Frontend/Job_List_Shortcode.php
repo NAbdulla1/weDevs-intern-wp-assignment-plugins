@@ -33,7 +33,8 @@ class Job_List_Shortcode {
         <div class="wrap">
             <div style="text-align: right; margin: 10px;">
                 <form action="" method="get">
-                    <input required type="text" name="search" placeholder="Search" value="<?php echo $search_string ?>"/>
+                    <input required type="text" name="search" placeholder="Search"
+                           value="<?php echo $search_string ?>"/>
                     <button type="submit">Search</button>
                 </form>
             </div>
@@ -52,7 +53,7 @@ class Job_List_Shortcode {
                         <a href="<?php echo $job->company_url ?>">
                             <img style=" width: 100%;"
                                  src="<?php echo $job->company_logo ?>"
-                                 alt="<?php echo$job->company ?>"/>
+                                 alt="<?php echo $job->company ?>"/>
                         </a>
                     </div>
                 </div>

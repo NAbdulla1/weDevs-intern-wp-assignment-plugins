@@ -18,6 +18,11 @@ class Single_Job_Shortcode {
 		if ( is_wp_error( $job_details ) ) {
 			return "<div class='wrap'>{$job_details->get_error_message()}</div>";
 		}
+		if ( wp_remote_retrieve_response_code( $job_details ) != 200 ) {
+			$msg = wp_remote_retrieve_response_message( $job_details );
+
+			return "<div class='wrap'>$msg</div>";
+		}
 		$job = json_decode( wp_remote_retrieve_body( $job_details ) );
 		?>
         <div class="wrap">
