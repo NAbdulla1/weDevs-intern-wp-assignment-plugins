@@ -33,7 +33,7 @@ class Single_Job_Shortcode {
             <p><?php echo $job->type ?> job</p>
             <p>Company: <a href="<?php echo $job->company_url ?>"><?php echo $job->company ?></a></p>
             <p>Location: <?php echo $job->location ?></p>
-            <p>Posted at: <?php echo $job->created_at ?></p>
+            <p>Posted at: <?php echo date_format( date_create( $job->created_at ), "d M, Y" ) ?></p>
             <div>
                 <strong>Description:</strong>
 				<?php echo $job->description ?>
