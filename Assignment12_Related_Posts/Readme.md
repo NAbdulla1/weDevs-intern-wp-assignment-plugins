@@ -1,0 +1,1 @@
+This plugin will create a widget called `Related Posts` and will be available in `Appearance >> Widgets`.
