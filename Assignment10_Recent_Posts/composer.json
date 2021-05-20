@@ -1,0 +1,19 @@
+{
+  "name": "nayon/assignment10_recent_posts",
+  "description": "A plugin to practice dashboard widget",
+  "type": "wordpress-plugin",
+  "license": "GPL2",
+  "authors": [
+    {
+      "name": "Md. Abdulla Al Mamun",
+      "email": "nayonabdulla@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "A10_RP\\": "includes"
+    }
+  }
+}
