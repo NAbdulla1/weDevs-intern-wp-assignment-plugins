@@ -1,0 +1,19 @@
+{
+  "name": "nayon/assignment14_author_box",
+  "description": "A wordpress plugin to show meta fields in author profile and meta data about author in post",
+  "type": "wordpress-plugin",
+  "license": "GPL2",
+  "authors": [
+    {
+      "name": "Md. Abdulla Al Mamun",
+      "email": "nayonabdulla@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "A14_Author_Box\\": "includes"
+    }
+  }
+}

@@ -1,3 +1,4 @@
+.idea
 /*
 vendor
 logs.log
@@ -15,3 +16,4 @@ logs.log
 !Assignment11_Cats_Fact
 !Assignment12_Related_Posts
 !Assignment13_Subscription_Form
+!Assignment14_Author_Box
