@@ -1,0 +1,19 @@
+{
+  "name": "nayon/assignment15_customer_reg_form",
+  "description": "A wordpress plugin to work with user roles and capabilities",
+  "type": "wordpress-plugin",
+  "license": "GPL2",
+  "authors": [
+    {
+      "name": "Md. Abdulla Al Mamun",
+      "email": "nayonabdulla@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "A15_Customer_Reg_Form\\": "includes"
+    }
+  }
+}
