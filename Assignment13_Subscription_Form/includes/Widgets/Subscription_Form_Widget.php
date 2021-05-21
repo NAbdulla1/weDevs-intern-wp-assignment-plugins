@@ -40,14 +40,14 @@ class Subscription_Form_Widget extends WP_Widget {
 
 		echo '<div class="textwidget">';
 		?>
-        <div style="color:whitesmoke; display: none; padding: 0 10px; border-radius: 10px; border: 1px blue solid;"
-             id="a13_sfw_status"></div>
         <form id="a13_sfw" method="post">
             <input style="padding: 0 5px; margin: 5px 0" name="email" type="email" placeholder="Email Address"/>
 			<?php wp_nonce_field( self::form_nonce_action ); ?>
             <input hidden name="action" value="<?php echo self::form_ajax_action ?>"/>
             <button style="padding: 0 5px; margin: 5px 0" type="submit">Subscribe</button>
         </form>
+        <div style="text-align: center;color:whitesmoke; display: none; padding: 0 10px; border-radius: 10px;"
+             id="a13_sfw_status"></div>
 		<?php
 		echo '</div>';
 

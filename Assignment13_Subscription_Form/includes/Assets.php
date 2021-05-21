@@ -15,7 +15,8 @@ class Assets {
 			wp_register_script( $handle, $asset['src'], $asset['deps'], $asset['version'], true );
 		}
 		wp_localize_script( 'a13_subs_form_submit', 'a13sfs', [
-			'submit_endpoint' => admin_url() . 'admin-ajax.php'
+			'submit_endpoint' => admin_url() . 'admin-ajax.php',
+			'loading_img_src' => A13_SUBSCRIPTION_FORM_ASSETS . "/images/loading.gif",
 		] );
 	}
 
