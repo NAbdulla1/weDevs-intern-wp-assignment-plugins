@@ -55,6 +55,8 @@ class Assignment13_Subscription_Form {
 
 	public function init_plugin() {
 		new \A13_Subscription_Form\Widgets();
+		new \A13_Subscription_Form\Assets();
+		if(wp_doing_ajax())new \A13_Subscription_Form\AjaxHandler();
 		if ( is_admin() ) {
 			new \A13_Subscription_Form\Admin();
 		}

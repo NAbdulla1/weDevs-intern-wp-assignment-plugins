@@ -41,7 +41,7 @@ class Subscription_Settings_MailChimp {
 
 		add_settings_field( self::mail_list_id_option, __( "Mail List", A13_SUBSCRIPTION_FORM_TD ), function () {
 			$list_id = get_option( self::mail_list_id_option );
-			$resp    = json_decode( MailChimpClient::get( '/lists' ) );
+			$resp    = json_decode( MailChimpClient::getMailLists( '/lists' ) );
 			if ( ! $resp->success ) {
 				echo "<p>$resp->message Please Give correct Api Key</p>";
 			} else {
