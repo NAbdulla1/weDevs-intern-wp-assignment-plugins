@@ -22,7 +22,7 @@ class Installer {
 		global $wpdb;
 		$charset = $wpdb->get_charset_collate();
 		$schema  = "
-		CREATE TABLE `{$wpdb->prefix}a07_book_review_ratings`
+		CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}a07_book_review_ratings`
 			  (
 			     `id`         INT NOT NULL auto_increment,
 			     `user_id`    BIGINT NOT NULL,
