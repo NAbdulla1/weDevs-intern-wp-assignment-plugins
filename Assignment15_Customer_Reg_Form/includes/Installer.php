@@ -26,8 +26,7 @@ class Installer {
 
 	private function create_customer_register_page() {
 		$page_slug    = get_option( 'a15_customer_reg_form_page_option', false );
-		$page_content = file_get_contents( __DIR__ . "/views/customer_register_page.php" );
-		$page_content = str_replace( '__action__', esc_url( admin_url( 'admin-post.php' ) ), $page_content );
+		$page_content = '[a15_crf_reg_form_shortcode]';
 		if ( false === $page_slug ) {
 			$args    = array(
 				'post_title'   => 'Register Customer',
@@ -40,9 +39,6 @@ class Installer {
 			$page_id = wp_insert_post( $args );
 			$slug    = get_post( $page_id )->post_name;
 			update_option( 'a15_customer_reg_form_page_option', $slug );
-			if ( is_wp_error( $page_id ) ) {
-				//handle failed to create page
-			}
 		} else {
 			$post    = get_posts( array( 'post_name' => $page_slug, 'post_type' => 'page', 'numberposts' => 1 ) );
 			$id      = $post[0]->ID;

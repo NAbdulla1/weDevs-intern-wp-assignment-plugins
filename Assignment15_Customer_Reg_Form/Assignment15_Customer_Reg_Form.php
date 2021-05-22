@@ -51,7 +51,9 @@ class Assignment15_Customer_Reg_Form {
 	}
 
 	public function init_plugin() {
-		new \A15_Customer_Reg_Form\Customer_Reg_Form_Handler();
+		if ( ! is_admin() ) {
+			new \A15_Customer_Reg_Form\Frontend();
+		}
 	}
 }
 
