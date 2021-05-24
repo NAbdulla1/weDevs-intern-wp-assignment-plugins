@@ -1,0 +1,18 @@
+{
+  "name": "nayonwp/assignment16",
+  "description": "A wordpress plugin to practice REST CRUD operations",
+  "type": "wordpress-plugin",
+  "license": "GPL2",
+  "authors": [
+    {
+      "name": "Md. Abdulla Al Mamun",
+      "email": "nayonabdulla@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "A16_Rest_CRUD_Mango\\": "includes"
+    }
+  }
+}
