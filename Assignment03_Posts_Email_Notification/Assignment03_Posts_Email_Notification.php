@@ -21,6 +21,8 @@ require_once __DIR__ . '/vendor/autoload.php';
  */
 final class Assignment03_Posts_Email_Notification {
 	private function __construct() {
+		register_activation_hook( __FILE__, [ $this, 'activate' ] );
+		register_deactivation_hook( __FILE__, [ $this, 'deactivate' ] );
 		add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
 	}
 
@@ -46,6 +48,16 @@ final class Assignment03_Posts_Email_Notification {
 			'user2@abc.com',
 			'user3@abc.com'
 		] );//apply custom hook
+	}
+
+	public function activate() {
+		$daily_notifier = \A03_Posts_Email_Notification\Daily_Notifier_Cron_Job::getInstance();
+		$daily_notifier->startScheduler();
+	}
+
+	public function deactivate() {
+		$daily_notifier = \A03_Posts_Email_Notification\Daily_Notifier_Cron_Job::getInstance();
+		$daily_notifier->stopScheduler();
 	}
 }
 
