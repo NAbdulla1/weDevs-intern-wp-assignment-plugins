@@ -6,7 +6,6 @@ namespace A03_Posts_Email_Notification;
 
 class Daily_Notifier_Cron_Job {
 	private function __construct() {
-		$this->mail_send_counter( false );
 	}
 
 	public static function getInstance() {
