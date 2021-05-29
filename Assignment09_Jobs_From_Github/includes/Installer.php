@@ -11,6 +11,9 @@ class Installer {
 		new Page_Manager();
 	}
 
+	/**
+	 * stores version and first installation time of the plugin into a wordpress system
+	 */
 	private function store_version() {
 		$installed = get_option( 'a09_jobs_from_github_installed', false );
 		if ( ! $installed ) {

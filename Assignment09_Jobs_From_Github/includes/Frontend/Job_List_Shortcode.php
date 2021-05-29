@@ -4,6 +4,11 @@
 namespace A09_Jobs_From_Github\Frontend;
 
 
+/**
+ * a shortcode to display job lists
+ * Class Job_List_Shortcode
+ * @package A09_Jobs_From_Github\Frontend
+ */
 class Job_List_Shortcode {
 	const tag = 'a09_jfg_job_list_shortcode';
 	const baseUrl = 'https://jobs.github.com/positions';
@@ -12,6 +17,10 @@ class Job_List_Shortcode {
 		add_shortcode( self::tag, [ $this, 'job_list_page_content' ] );
 	}
 
+	/**
+     * displays searched jobs in page by page.
+	 * @return false|string
+	 */
 	public function job_list_page_content() {
 		$single_job_page_slug = get_option( Page_Manager::SINGLE_JOB_PAGE_SLUG_KEY );
 		$search_string        = empty( $_GET['search'] ) ? '' : $_GET['search'];

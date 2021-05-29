@@ -4,6 +4,11 @@
 namespace A09_Jobs_From_Github\Frontend;
 
 
+/**
+ * Manages pages for the plugin
+ * Class Page_Manager
+ * @package A09_Jobs_From_Github\Frontend
+ */
 class Page_Manager {
 	const JOB_LIST_PAGE_SLUG_KEY = 'a09_jfg_list_page';
 	const SINGLE_JOB_PAGE_SLUG_KEY = 'a09_jfg_single_job_page';
@@ -17,6 +22,9 @@ class Page_Manager {
 		$this->single_job_page();
 	}
 
+	/**
+	 * creates a page if that is not already exists to list jobs
+	 */
 	private function job_list_page() {
 		$job_list_page_slug = get_option( self::JOB_LIST_PAGE_SLUG_KEY, false );
 		if ( ! $job_list_page_slug ) {
@@ -34,6 +42,9 @@ class Page_Manager {
 		}
 	}
 
+	/**
+	 * creates a page if that is not already exists to show a single job description
+	 */
 	private function single_job_page() {
 		$single_job_page_slug = get_option( self::SINGLE_JOB_PAGE_SLUG_KEY, false );
 		if ( ! $single_job_page_slug ) {

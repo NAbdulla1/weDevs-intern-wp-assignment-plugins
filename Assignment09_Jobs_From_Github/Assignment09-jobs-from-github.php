@@ -17,6 +17,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+/**
+ * Class Assignment09_Jobs_From_Github
+ */
 class Assignment09_Jobs_From_Github {
 	const version = '1.0';
 
@@ -27,6 +30,10 @@ class Assignment09_Jobs_From_Github {
 		add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
 	}
 
+	/**
+	 * ensures a singleton of this class is present at a request
+	 * @return Assignment09_Jobs_From_Github|false
+	 */
 	public static function init() {
 		static $instance = false;
 		if ( ! $instance ) {
@@ -36,6 +43,9 @@ class Assignment09_Jobs_From_Github {
 		return $instance;
 	}
 
+	/**
+	 * defines constants to use later
+	 */
 	private function define_constants() {
 		define( "A09_JOBS_FROM_GITHUB_VERSION", self::version );
 		define( "A09_JOBS_FROM_GITHUB_FILE", __FILE__ );
@@ -44,10 +54,16 @@ class Assignment09_Jobs_From_Github {
 		define( "A09_JOBS_FROM_GITHUB_ASSETS", A09_JOBS_FROM_GITHUB_URL . '/assets' );
 	}
 
+	/**
+	 * performs some operation during installation
+	 */
 	public function activate() {
 		( new \A09_Jobs_From_Github\Installer() )->run();
 	}
 
+	/**
+	 * executes the parts of the plugin
+	 */
 	public function init_plugin() {
 		if ( is_admin() ) {
 
@@ -57,8 +73,14 @@ class Assignment09_Jobs_From_Github {
 	}
 }
 
+/**
+ * a helper function
+ */
 function a09_jobs_from_github() {
 	Assignment09_Jobs_From_Github::init();
 }
 
+/**
+ * the entrypoint of the plugin
+ */
 a09_jobs_from_github();
