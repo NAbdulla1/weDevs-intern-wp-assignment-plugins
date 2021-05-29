@@ -5,18 +5,33 @@ namespace A06_Post_Excerpt\Frontend;
 
 use A06_Post_Excerpt\Constants;
 
+/**
+ * a short code which shows and filters the post excerpts
+ * Class Latext_Post_Excerpts
+ * @package A06_Post_Excerpt\Frontend
+ */
 class Latext_Post_Excerpts {
 	public function __construct() {
 		add_shortcode( Constants::plugin_prefix . '_excerpt_list', [ $this, 'excerpt_list_with_filter' ] );
 		add_action( 'wp_head', [ $this, 'add_select2' ] );
 	}
 
+	/**
+	 * add necessary js and css to show a multiselect more effectively
+	 */
 	public function add_select2() {
 		echo '<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
             <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
             <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>';
 	}
 
+	/**
+     * shows the list of excerpts and the filter parameter presentations
+	 * @param $atts
+	 * @param $content
+	 *
+	 * @return false|string
+	 */
 	public function excerpt_list_with_filter( $atts, $content ) {
 		$category = empty( $_POST[ Constants::plugin_prefix . '_category' ] ) ? 0 : (int) $_POST[ Constants::plugin_prefix . '_category' ];
 		$count    = empty( $_POST[ Constants::plugin_prefix . '_count' ] ) ? 10 : (int) $_POST[ Constants::plugin_prefix . '_count' ];

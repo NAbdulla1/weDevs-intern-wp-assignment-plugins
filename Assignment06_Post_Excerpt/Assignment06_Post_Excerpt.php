@@ -16,6 +16,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once 'vendor/autoload.php';
 
+/**
+ * Entry Point class for the plugin
+ * Class Assignment06_Post_Excerpt
+ */
 class Assignment06_Post_Excerpt {
 	const version = '1.0';
 
@@ -36,6 +40,9 @@ class Assignment06_Post_Excerpt {
 		return $instance;
 	}
 
+	/**
+	 * define constants to use later
+	 */
 	private function define_constants() {
 		define( "A06_POST_EXCERPT_VERSION", self::version );
 		define( "A06_POST_EXCERPT_FILE", __FILE__ );
@@ -44,6 +51,9 @@ class Assignment06_Post_Excerpt {
 		define( "A06_POST_EXCERPT_ASSETS", A06_POST_EXCERPT_URL . '/assets' );
 	}
 
+	/**
+	 * do some works at the activation of the plugin
+	 */
 	public function activate() {
 		$installed = get_option( 'a06_post_excerpt_installed', false );
 		if ( ! $installed ) {
@@ -52,6 +62,9 @@ class Assignment06_Post_Excerpt {
 		update_option( 'a06_post_excerpt_version', A06_POST_EXCERPT_VERSION );
 	}
 
+	/**
+	 * initialize the plugin after it's loaded
+	 */
 	public function init_plugin() {
 		if ( is_admin() ) {
 			new \A06_Post_Excerpt\Admin();
@@ -61,8 +74,14 @@ class Assignment06_Post_Excerpt {
 	}
 }
 
+/**
+ * like an entrypoint function
+ */
 function a06_post_excerpt() {
 	Assignment06_Post_Excerpt::init();
 }
 
+/**
+ * the main entry point.
+ */
 a06_post_excerpt();
