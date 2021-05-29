@@ -10,6 +10,11 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 use A05_Contact_Form\DB;
 use WP_List_Table;
 
+/**
+ * Shows a contact list which looks like a built in post list or page list in wordpress
+ * Class Contact_List
+ * @package A05_Contact_Form\Admin
+ */
 class Contact_List extends WP_List_Table {
 	public function __construct() {
 		parent::__construct( [
@@ -19,6 +24,9 @@ class Contact_List extends WP_List_Table {
 		] );
 	}
 
+	/**
+	 * prepares items to show in the list
+	 */
 	public function prepare_items() {
 		$column   = $this->get_columns();
 		$hidden   = [];
@@ -50,6 +58,10 @@ class Contact_List extends WP_List_Table {
 		] );
 	}
 
+	/**
+	 * gets the columns by which we will be able to sort the table list by clicking on the column name
+	 * @return \string[][]
+	 */
 	protected function get_sortable_columns() {
 		return [
 			'first_name' => array( 'first_name', 'desc' ),
@@ -58,6 +70,10 @@ class Contact_List extends WP_List_Table {
 		];
 	}
 
+	/**
+	 * the columns to show in the table
+	 * @return array
+	 */
 	public function get_columns() {
 		return [
 			'cb'         => '<input type="checkbox">',
@@ -68,14 +84,33 @@ class Contact_List extends WP_List_Table {
 		];
 	}
 
+	/**
+	 * gets the element to be shown in the cb column. here cb column is listed in the 'get_columns' function
+	 * @param array|object $item
+	 *
+	 * @return string
+	 */
 	protected function column_cb( $item ) {
 		return "<input type='checkbox' name='contact_id[]' value='{$item->id}'/>";
 	}
 
+	/**
+	 * gets the element to be shown in the first_name column
+	 * @param $item
+	 *
+	 * @return string
+	 */
 	public function column_first_name( $item ) {
 		return sprintf( '<strong>%s</strong>', $item->first_name );
 	}
 
+	/**
+	 * the value to be shown for the column for an item
+	 * @param array|object $item
+	 * @param string $column_name
+	 *
+	 * @return string|void
+	 */
 	protected function column_default( $item, $column_name ) {
 		return isset( $item->$column_name ) ? $item->$column_name : '';
 	}

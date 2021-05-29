@@ -3,13 +3,19 @@
 
 namespace A05_Contact_Form;
 
-
+/**
+ * Class Installer
+ * @package A05_Contact_Form
+ */
 class Installer {
 	public function run() {
 		$this->save_version();
 		$this->create_table();
 	}
 
+	/**
+	 * save some information about the plugin
+	 */
 	private function save_version() {
 		$installed = get_option( 'a05_contact_form_installed', false );
 		if ( ! $installed ) {
@@ -18,6 +24,9 @@ class Installer {
 		update_option( 'a05_contact_form_version', A05_CONTACT_FORM_VERSION );
 	}
 
+	/**
+	 * create table to store contact information
+	 */
 	private function create_table() {
 		global $wpdb;
 		$charset = $wpdb->get_charset_collate();

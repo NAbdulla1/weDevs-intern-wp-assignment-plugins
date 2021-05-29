@@ -4,12 +4,24 @@
 namespace A05_Contact_Form\Shortcode;
 
 
+/**
+ * A shortcode to show and handle a contact form
+ * Class ContactForm
+ * @package A05_Contact_Form\Shortcode
+ */
 class ContactForm {
 	public function __construct() {
-		add_shortcode( 'a05_contact_form', [ $this, 'contact_form_handler' ] );
+		add_shortcode( 'a05_contact_form', [ $this, 'contact_from_renderer' ] );
 	}
 
-	public function contact_form_handler( $attrs, $content ) {
+	/**
+     * Loads the contact form script and renders a contact form
+	 * @param $attrs
+	 * @param $content
+	 *
+	 * @return false|string
+	 */
+	public function contact_from_renderer( $attrs, $content ) {
 		wp_enqueue_script( 'contact_form_script' );
 		$fname_error   = false;
 		$lname_error   = false;

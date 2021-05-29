@@ -16,9 +16,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+/**
+ * Class Assignment05_Contact_From
+ */
 class Assignment05_Contact_From {
 	const version = '1.0';
 
+	/**
+	 * Assignment05_Contact_From constructor.
+	 */
 	private function __construct() {
 		$this->define_constants();
 
@@ -26,6 +32,9 @@ class Assignment05_Contact_From {
 		add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
 	}
 
+	/**
+	 * do some action after plugin loaded
+	 */
 	public function init_plugin() {
 		new \A05_Contact_Form\Assets();
 		if ( defined( 'DOING_AJAX' ) ) {
@@ -38,6 +47,9 @@ class Assignment05_Contact_From {
 		}
 	}
 
+	/**
+	 * @return Assignment05_Contact_From|false
+	 */
 	public static function init() {
 		static $instance = false;
 		if ( ! $instance ) {
@@ -47,6 +59,9 @@ class Assignment05_Contact_From {
 		return $instance;
 	}
 
+	/**
+	 * define constants to user later in the plugin
+	 */
 	private function define_constants() {
 		define( "A05_CONTACT_FORM_VERSION", self::version );
 		define( "A05_CONTACT_FORM_FILE", __FILE__ );
@@ -55,14 +70,23 @@ class Assignment05_Contact_From {
 		define( "A05_CONTACT_FORM_ASSETS", A05_CONTACT_FORM_URL . '/assets' );
 	}
 
+	/**
+	 * the activation hook to perform some action when activating the plugin
+	 */
 	public function activate() {
 		$installer = new \A05_Contact_Form\Installer();
 		$installer->run();
 	}
 }
 
+/**
+ * a helper function
+ */
 function a05_contact_form() {
 	Assignment05_Contact_From::init();
 }
 
+/**
+ * the entry point
+ */
 a05_contact_form();

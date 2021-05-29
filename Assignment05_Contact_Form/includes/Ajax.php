@@ -3,7 +3,10 @@
 
 namespace A05_Contact_Form;
 
-
+/**
+ * Class Ajax
+ * @package A05_Contact_Form
+ */
 class Ajax {
 	private array $errors = [];
 
@@ -12,6 +15,9 @@ class Ajax {
 		add_action( 'wp_ajax_nopriv_a05_contact_form', [ $this, 'submit_contact_form' ] );
 	}
 
+	/**
+	 * handle the contact form submitted by ajax
+	 */
 	public function submit_contact_form() {
 		if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'a05_contact_form__nonce' ) ) {
 			wp_send_json_error( [
@@ -40,6 +46,9 @@ class Ajax {
 		}
 	}
 
+	/**
+	 * validate the contact form
+	 */
 	public function validate_contact_form(): void {
 		if ( empty( $_POST['a05_contact_form_fname'] ) ) {
 			$this->errors['first_name'] = 'No first name provided';
