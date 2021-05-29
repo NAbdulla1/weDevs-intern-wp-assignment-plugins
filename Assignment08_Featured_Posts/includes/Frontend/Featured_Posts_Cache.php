@@ -3,10 +3,18 @@
 
 namespace A08_Featured_Post\Frontend;
 
-
+/**
+ * retrieves the posts from database and caches them until the database query parameters changes
+ * Class Featured_Posts_Cache
+ * @package A08_Featured_Post\Frontend
+ */
 class Featured_Posts_Cache {
 	const group = 'a08_featured_posts';
 
+	/**
+	 * retrieves and returns posts from database if query parameters change or returns from cache.
+	 * @return array
+	 */
 	public static function get_posts(): array {
 		$order = get_option( 'a08_featured_post_order' );
 		$args  = $order == 'rand' ? array(

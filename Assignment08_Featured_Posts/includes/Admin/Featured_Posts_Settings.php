@@ -2,12 +2,20 @@
 
 namespace A08_Featured_Post\Admin;
 
+/**
+ * a settings page to control featured posts parameters
+ * Class Featured_Posts_Settings
+ * @package A08_Featured_Post\Admin
+ */
 class Featured_Posts_Settings {
 	public function __construct() {
 		add_action( 'admin_init', [ $this, 'init_settings' ] );
 		add_action( 'admin_footer', [ $this, 'add_select2' ] );
 	}
 
+	/**
+	 * initializes the settings
+	 */
 	public function init_settings() {
 		register_setting( 'a08_featured_posts', 'a08_featured_post_categories' );
 		register_setting( 'a08_featured_posts', 'a08_featured_posts_no_of_posts' );
@@ -19,6 +27,9 @@ class Featured_Posts_Settings {
 		], 'a08_featured_posts' );
 	}
 
+	/**
+	 * creates a group of settings
+	 */
 	function setting_section_callback() {
 		add_settings_field( 'a08_featured_posts_no_of_posts', 'No of Posts', [
 			$this,
@@ -36,6 +47,9 @@ class Featured_Posts_Settings {
 		], 'a08_featured_posts', 'setting_section' );
 	}
 
+	/**
+	 * setting field to total number of posts to be shown as featured
+	 */
 	public function no_of_posts() {
 		$posts = get_option( "a08_featured_posts_no_of_posts" );
 		$posts = empty( $posts ) ? "0" : $posts;
@@ -45,6 +59,9 @@ class Featured_Posts_Settings {
 		<?php
 	}
 
+	/**
+	 * setting field to specify the display of the featured posts
+	 */
 	public function post_order() {
 		$curOrder = get_option( "a08_featured_post_order" );
 		$options  = [ [ 'rand', 'Random' ], [ 'asc', 'Ascending' ], [ 'desc', 'Descending' ] ];
@@ -59,6 +76,9 @@ class Featured_Posts_Settings {
 		<?php
 	}
 
+	/**
+	 * setting field to select post category for featured posts
+	 */
 	public function post_categories() {
 		$categories = get_categories();
 		$curCat     = get_option( 'a08_featured_post_categories' );
@@ -78,6 +98,9 @@ class Featured_Posts_Settings {
 		<?php
 	}
 
+	/**
+	 * loads js and css to show multiselect field effectively
+	 */
 	public function add_select2() {
 		echo '<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
             <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />

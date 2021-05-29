@@ -1,11 +1,25 @@
 <?php
 
 namespace A08_Featured_Post\Frontend;
+
+/**
+ * a shortcode to show featured posts
+ * Class Show_Featured_Posts_Shortcode
+ * @package A08_Featured_Post\Frontend
+ */
 class Show_Featured_Posts_Shortcode {
 	public function __construct() {
 		add_shortcode( 'a08_show_featured_posts', [ $this, 'get_shortcode' ] );
 	}
 
+	/**
+	 * rendering the shortcode.
+	 *
+	 * @param $attrs
+	 * @param $content
+	 *
+	 * @return false|string
+	 */
 	public function get_shortcode( $attrs, $content ) {
 		$posts = Featured_Posts_Cache::get_posts();
 		ob_start();

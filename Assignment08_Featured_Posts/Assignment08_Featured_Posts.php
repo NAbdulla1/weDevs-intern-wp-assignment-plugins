@@ -16,6 +16,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+/**
+ * Class Assignment08_Featured_Posts
+ */
 class Assignment08_Featured_Posts {
 	const version = '1.0';
 
@@ -26,6 +29,10 @@ class Assignment08_Featured_Posts {
 		add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
 	}
 
+	/**
+	 * ensures a singleton is provided
+	 * @return Assignment08_Featured_Posts|false
+	 */
 	public static function init() {
 		static $instance = false;
 		if ( ! $instance ) {
@@ -35,6 +42,9 @@ class Assignment08_Featured_Posts {
 		return $instance;
 	}
 
+	/**
+	 * defines constants to use later
+	 */
 	private function define_constants() {
 		define( "A08_FEATURED_POSTS_VERSION", self::version );
 		define( "A08_FEATURED_POSTS_FILE", __FILE__ );
@@ -43,6 +53,9 @@ class Assignment08_Featured_Posts {
 		define( "A08_FEATURED_POSTS_ASSETS", A08_FEATURED_POSTS_URL . '/assets' );
 	}
 
+	/**
+	 * stores some information during activation of the plugin
+	 */
 	public function activate() {
 		$installed = get_option( 'a08_featured_posts_installed', false );
 		if ( ! $installed ) {
@@ -51,6 +64,9 @@ class Assignment08_Featured_Posts {
 		update_option( 'a08_featured_posts_version', A08_FEATURED_POSTS_VERSION );
 	}
 
+	/**
+	 * executes constituent parts of the plugin as necessary
+	 */
 	public function init_plugin() {
 		if ( is_admin() ) {
 			new \A08_Featured_Post\Admin();
@@ -60,8 +76,14 @@ class Assignment08_Featured_Posts {
 	}
 }
 
+/**
+ * a helper function
+ */
 function a08_featured_posts() {
 	Assignment08_Featured_Posts::init();
 }
 
+/**
+ * entry point of the plugin
+ */
 a08_featured_posts();
