@@ -1,0 +1,11 @@
+/* Hide all steps by default: */
+.checkout-tab {
+	display: none;
+}
+.col2-set, #order_review_heading, #order_review {
+	width: 100% !important;
+}
+
+#prevBtn {
+	margin-top: 20px;
+}

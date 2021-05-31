@@ -8,6 +8,8 @@
  * Version: 1.0
  * License: GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * @package A18_WooCommerce
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -21,21 +23,21 @@ require_once __DIR__ . '/vendor/autoload.php';
  */
 class Assignment18_WooCommerce {
 	/**
-	 * current version of the plugin
+	 * Current VERSION of the plugin
 	 */
-	const version = '1.0';
+	const VERSION = '1.0';
 
 	/**
 	 * Assignment18_WooCommerce constructor.
 	 */
 	private function __construct() {
 		$this->define_constants();
-		register_activation_hook( __FILE__, [ $this, 'activate' ] );
-		add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
+		register_activation_hook( __FILE__, array( $this, 'activate' ) );
+		add_action( 'plugins_loaded', array( $this, 'init_plugin' ) );
 	}
 
 	/**
-	 * ensures singleton characteristics of this class
+	 * Ensures singleton characteristics of this class
 	 *
 	 * @return Assignment18_WooCommerce|false
 	 */
@@ -49,26 +51,26 @@ class Assignment18_WooCommerce {
 	}
 
 	/**
-	 * define constants to use throughout the plugin
+	 * Define constants to use throughout the plugin
 	 */
 	public function define_constants() {
-		define( "A18_WOOCOMMERCE_VERSION", self::version );
-		define( "A18_WOOCOMMERCE_FILE", __FILE__ );
-		define( "A18_WOOCOMMERCE_PATH", __DIR__ );
-		define( "A18_WOOCOMMERCE_URL", plugins_url( '', A18_WOOCOMMERCE_FILE ) );
-		define( "A18_WOOCOMMERCE_ASSETS", A18_WOOCOMMERCE_URL . '/assets' );
-		define( "A18_WOOCOMMERCE_TD", 'a18_woocommerce_text_domain' );
+		define( 'A18_WOOCOMMERCE_VERSION', self::VERSION );
+		define( 'A18_WOOCOMMERCE_FILE', __FILE__ );
+		define( 'A18_WOOCOMMERCE_PATH', __DIR__ );
+		define( 'A18_WOOCOMMERCE_URL', plugins_url( '', A18_WOOCOMMERCE_FILE ) );
+		define( 'A18_WOOCOMMERCE_ASSETS', A18_WOOCOMMERCE_URL . '/assets' );
+		define( 'A18_WOOCOMMERCE_TD', 'a18_woocommerce_text_domain' );
 	}
 
 	/**
-	 * plugin activation hook callback
+	 * Plugin activation hook callback
 	 */
 	public function activate() {
 		( new \A18_WooCommerce\Installer() )->run();
 	}
 
 	/**
-	 * start initializing plugin after plugin loaded
+	 * Start initializing plugin after plugin loaded
 	 */
 	public function init_plugin() {
 		if ( ! is_admin() ) {
@@ -78,7 +80,7 @@ class Assignment18_WooCommerce {
 }
 
 /**
- * a helper function
+ * A helper function
  */
 function a18_woocommerce() {
 	Assignment18_WooCommerce::init();
