@@ -1,0 +1,19 @@
+{
+  "name": "nayonwp/assignment19-customer-total-purchase",
+  "description": "A plugin to work with woocommerce",
+  "minimum-stability": "dev",
+  "license": "GPLv2",
+  "authors": [
+    {
+      "name": "nayon",
+      "email": "nayonwp@gmail.com"
+    }
+  ],
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {
+      "A19_Custom_Total_Purchase\\": "includes"
+    }
+  }
+}
