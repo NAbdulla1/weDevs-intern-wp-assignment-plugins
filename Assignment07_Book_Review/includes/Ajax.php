@@ -3,17 +3,24 @@
 
 namespace A07_Book_Review;
 
-
-use A05_Contact_Form\Log;
-
+/**
+ * Class Ajax Ajax Request Handler
+ * @package A07_Book_Review
+ */
 class Ajax {
 	private $errors = [];
 
+	/**
+	 * Ajax constructor.
+	 */
 	public function __construct() {
 		add_action( 'wp_ajax_a07_rating_save', [ $this, 'save_rating' ] );
 		add_action( 'wp_ajax_nopriv_a07_rating_save', [ $this, 'unauthorized' ] );
 	}
 
+	/**
+	 * save the ratings found from ajax request body
+	 */
 	public function save_rating() {
 		if ( empty( $_POST['a07_r_nonce'] ) || ! wp_verify_nonce( $_POST['a07_r_nonce'], 'a07_rating_save_act' ) ) {
 			wp_send_json_error( [ 'message' => 'Nonce verification failed' ] );
@@ -44,12 +51,18 @@ class Ajax {
 		wp_send_json_success( [ 'message' => 'Post rated successfully' ] );
 	}
 
+	/**
+	 * Sends proper response for unauthorized access
+	 */
 	public function unauthorized() {
 		wp_send_json_error( [
 			'message' => 'Must be logged in to rate a post'
 		], 403 );
 	}
 
+	/**
+	 * Validate the ajax body data and store error on $errors array
+	 */
 	public function validate(): void {
 		if ( empty( $_POST['post_id'] ) ) {
 			array_push( $this->errors, [ 'post-id', 'no post id provided' ] );

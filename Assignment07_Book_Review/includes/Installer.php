@@ -3,13 +3,22 @@
 
 namespace A07_Book_Review;
 
-
+/**
+ * Class Installer
+ * @package A07_Book_Review
+ */
 class Installer {
+	/**
+	 * Runs functions to Install
+	 */
 	public function run() {
 		$this->save_version();
 		$this->create_db_table();
 	}
 
+	/**
+	 * Save the version and first installation time
+	 */
 	private function save_version() {
 		$installed = get_option( 'a07_book_review_installed', false );
 		if ( ! $installed ) {
@@ -18,6 +27,9 @@ class Installer {
 		update_option( 'a07_book_review_version', A07_BOOK_REVIEW_VERSION );
 	}
 
+	/**
+	 * Create db table if not exists
+	 */
 	private function create_db_table() {
 		global $wpdb;
 		$charset = $wpdb->get_charset_collate();
@@ -31,7 +43,7 @@ class Installer {
 			     `created_at` DATE NOT NULL,
 			     `updated_at` DATE NOT NULL,
 			     PRIMARY KEY (`id`)
-			  ) $charset; 
+			  ) $charset;
 		";
 
 		if ( ! function_exists( 'dbDelta' ) ) {

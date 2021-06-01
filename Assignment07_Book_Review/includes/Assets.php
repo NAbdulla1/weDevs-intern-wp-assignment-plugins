@@ -4,11 +4,21 @@
 namespace A07_Book_Review;
 
 
+/**
+ * Class Assets Static asset like js css manageer
+ * @package A07_Book_Review
+ */
 class Assets {
+	/**
+	 * Assets constructor.
+	 */
 	public function __construct() {
 		add_action( 'wp_enqueue_scripts', [ $this, 'register_assets' ] );
 	}
 
+	/**
+	 * Register the assets
+	 */
 	public function register_assets() {
 		$scripts = $this->get_scripts();
 		foreach ( $scripts as $handle => $asset ) {
@@ -25,6 +35,10 @@ class Assets {
 		] );
 	}
 
+	/**
+	 * Prepares and returns the scripts to user
+	 * @return array[]
+	 */
 	public function get_scripts() {
 		return [
 			'a07_book_review_rate_script' => [
@@ -35,6 +49,10 @@ class Assets {
 		];
 	}
 
+	/**
+	 * Finds current user ip
+	 * @return mixed
+	 */
 	function get_user_ip() {
 		if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
 			$ip = $_SERVER['HTTP_CLIENT_IP'];

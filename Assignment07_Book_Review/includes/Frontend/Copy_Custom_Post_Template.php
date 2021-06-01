@@ -3,14 +3,21 @@
 
 namespace A07_Book_Review\Frontend;
 
-
-use A06_Post_Excerpt\Log;
-
+/**
+ * Class Copy_Custom_Post_Template
+ * @package A07_Book_Review\Frontend
+ */
 class Copy_Custom_Post_Template {
+	/**
+	 * Copy_Custom_Post_Template constructor.
+	 */
 	public function __construct() {
 		add_action( 'init', [ $this, 'copy_custom_template_files' ] );
 	}
 
+	/**
+	 * Copy theme contents
+	 */
 	public function copy_custom_template_files() {
 		copy( A07_BOOK_REVIEW_PATH . '/assets/theme-files/single-a07_book_review_book.php',
 			get_template_directory() . '/single-a07_book_review_book.php' );

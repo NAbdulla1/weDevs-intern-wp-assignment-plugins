@@ -3,19 +3,36 @@
 
 namespace A07_Book_Review\Frontend;
 
-
+/**
+ * Class Search_Book_By_Meta
+ * @package A07_Book_Review\Frontend
+ */
 class Search_Book_By_Meta {
+	/**
+	 * Search_Book_By_Meta constructor.
+	 */
 	public function __construct() {
 		add_shortcode( 'a07_book_review_book_search', [ $this, 'search_by_book_meta' ] );
 		add_action( 'wp_head', [ $this, 'add_select2' ] );
 	}
 
+	/**
+	 * Add select2 library to the page
+	 */
 	public function add_select2() {
 		echo '<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
             <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
             <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>';
 	}
 
+	/**
+	 * Prepares, handles and returns the shortcode content
+	 *
+	 * @param array $atts ShortCode Attributes
+	 * @param $content
+	 *
+	 * @return false|string
+	 */
 	public function search_by_book_meta( $atts, $content ) {
 		$authors    = empty( $_POST['a07_book_review_author'] ) ? $this->get_distinct_meta_values( '_a07_book_review_author_field_value' ) : $_POST['a07_book_review_author'];
 		$count      = empty( $_POST['a07_book_review_count'] ) ? 10 : (int) $_POST['a07_book_review_count'];

@@ -3,12 +3,21 @@
 
 namespace A07_Book_Review;
 
-
+/**
+ * Class Book_Types Custom Taxonomy for Book_CPT
+ * @package A07_Book_Review
+ */
 class Book_Types {
+	/**
+	 * Book_Types constructor.
+	 */
 	public function __construct() {
 		add_action( 'init', [ $this, 'register_book_types_taxonomy' ] );
 	}
 
+	/**
+	 * Prepare and register the taxonomy
+	 */
 	function register_book_types_taxonomy() {
 		$labels = [
 			'menu_name'                  => esc_html__( 'Book Types', 'a07_book_review_text_domain' ),
