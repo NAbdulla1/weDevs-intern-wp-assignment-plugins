@@ -38,7 +38,7 @@ final class Assignment03_Posts_Email_Notification {
 	public function init_plugin() {
 		new \A03_Posts_Email_Notification\Email_Notifier();
 		$this->register_other_users();
-
+		new \A03_Posts_Email_Notification\Daily_Notifier_Cron_Job();
 		new \A03_Posts_Email_Notification\CapitalizeTitle();
 	}
 
@@ -51,12 +51,12 @@ final class Assignment03_Posts_Email_Notification {
 	}
 
 	public function activate() {
-		$daily_notifier = \A03_Posts_Email_Notification\Daily_Notifier_Cron_Job::getInstance();
+		$daily_notifier = new \A03_Posts_Email_Notification\Daily_Notifier_Cron_Job();
 		$daily_notifier->startScheduler();
 	}
 
 	public function deactivate() {
-		$daily_notifier = \A03_Posts_Email_Notification\Daily_Notifier_Cron_Job::getInstance();
+		$daily_notifier = new \A03_Posts_Email_Notification\Daily_Notifier_Cron_Job();
 		$daily_notifier->stopScheduler();
 	}
 }
