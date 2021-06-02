@@ -6,101 +6,72 @@ namespace A06_Post_Excerpt\Frontend;
 use A06_Post_Excerpt\Constants;
 
 /**
- * a short code which shows and filters the post excerpts
+ * A short code which shows and filters the post excerpts
+ *
+ * This shortcode will have parameters:
+ * post_ids => a comma separated list of post ids
+ * a06_pe_category => a single valid category, if category is invalid then it will user all categories
+ * post_count => the number of posts to show
+ *
  * Class Latext_Post_Excerpts
  * @package A06_Post_Excerpt\Frontend
  */
 class Latext_Post_Excerpts {
 	public function __construct() {
 		add_shortcode( Constants::plugin_prefix . '_excerpt_list', [ $this, 'excerpt_list_with_filter' ] );
-		add_action( 'wp_head', [ $this, 'add_select2' ] );
 	}
 
 	/**
-	 * add necessary js and css to show a multiselect more effectively
-	 */
-	public function add_select2() {
-		echo '<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-            <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-            <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>';
-	}
-
-	/**
-     * shows the list of excerpts and the filter parameter presentations
-	 * @param $atts
+	 * shows the list of excerpts and the filter parameter presentations
+	 *
+	 * @param array $atts
 	 * @param $content
 	 *
 	 * @return false|string
 	 */
 	public function excerpt_list_with_filter( $atts, $content ) {
-		$category = empty( $_POST[ Constants::plugin_prefix . '_category' ] ) ? 0 : (int) $_POST[ Constants::plugin_prefix . '_category' ];
-		$count    = empty( $_POST[ Constants::plugin_prefix . '_count' ] ) ? 10 : (int) $_POST[ Constants::plugin_prefix . '_count' ];
-		$post_ids = empty( $_POST[ Constants::plugin_prefix . '_pid' ] ) ? array() : array_filter( $_POST[ Constants::plugin_prefix . '_pid' ], function ( $pid ) {
-			return strlen( $pid ) > 0;
+		$all_posts    = get_posts( array( 'posts_per_page' => - 1 ) );
+		$all_post_ids = ( $all_posts == null ) ? array() : array_map( fn( $pst ) => $pst->ID, $all_posts );
+
+		$all_categories   = get_categories();
+		$all_category_ids = ( $all_categories == null ) ? array( 1 ) : array_map( fn( $cat ) => $cat->term_id, $all_categories );
+		$defaults         = array(
+			'numberposts'  => 10,
+			'include'      => $all_post_ids,
+			'category__in' => $all_category_ids,
+		);
+
+		$arguments = array();
+		$atts      = array_change_key_case( $atts, CASE_LOWER );
+		if ( ! empty( $atts['post_ids'] ) ) {
+			$arguments['include'] = wp_parse_id_list( $atts['post_ids'] );
+		}
+		if ( ! empty( $atts['post_count'] ) && is_numeric( $atts['post_count'] ) ) {
+			$arguments['numberposts'] = (int) $atts['post_count'];
+		}
+		if ( ! empty( $atts ['a06_pe_category'] ) &&
+		     ! empty( array_filter( $all_categories, fn( $cat ) => strtolower( $cat->name ) == strtolower( $atts['a06_pe_category'] ) ) ) ) {
+			$arguments['category__in'] = array_map( fn( $cat ) => $cat->term_id, array_filter( $all_categories, fn( $cat ) => $cat->name == $atts['a06_pe_category'] ) );
+		}
+		$arguments = shortcode_atts( $defaults, $arguments, Constants::plugin_prefix . '_excerpt_list' );
+		$posts     = array_filter( $all_posts, function ( $pst ) use ( $arguments ) {
+			return in_array( $pst->ID, $arguments['include'] )
+			       && ! empty( array_intersect( $pst->post_category, $arguments['category__in'] ) );
+
 		} );
-		$posts    = get_posts( array(
-			'category'    => $category,
-			'include'     => $post_ids,
-			'numberposts' => $count
-		) );
+		$posts     = array_slice( $posts, 0, $arguments['numberposts'] );
 
 		ob_start();
-		?>
-        <form action="" method="post">
-            <select name='<?php echo Constants::plugin_prefix . '_category' ?>'>
-                <option value="0" <?php echo ( $category === 0 ) ? 'selected' : '' ?> >All Categories</option>
-				<?php
-				$cats = get_categories();
-				foreach ( $cats as $cat ) {
-					if ( $cat->term_id == $category ) {
-						echo "<option selected value='$cat->term_id'>$cat->name</option>\n";
-					} else {
-						echo "<option value='$cat->term_id'>$cat->name</option>\n";
-					}
-				}
-				?>
-            </select>
-            <select name='<?php echo Constants::plugin_prefix . '_count' ?>'>
-				<?php
-				for ( $cnt = 1; $cnt <= 20; $cnt ++ ) {
-					if ( $cnt == $count ) {
-						echo "<option selected value='$cnt'>$cnt</option>\n";
-					} else {
-						echo "<option value='$cnt'>$cnt</option>\n";
-					}
-				}
-				?>
-            </select>
-            <label for="post_ids">Post IDs:</label>
-            <select id="post_ids" name='<?php echo Constants::plugin_prefix . '_pid[]' ?>' multiple="multiple">
-				<?php
-				$all_posts = get_posts( array( 'posts_per_page' => - 1 ) );
-				foreach ( $all_posts as $pst ) {
-					$id = $pst->ID;
-					if ( in_array( $id, $post_ids ) ) {
-						echo "<option selected value='$id'>$id</option>";
-					} else {
-						echo "<option  value='$id'>$id</option>";
-					}
-				}
-				?>
-            </select>
-            <script>
-                $(document).ready(function () {
-                    $('#post_ids').select2();
-                });
-            </script>
-            <button type="submit">Filter</button>
-        </form>
-		<?php
 		if ( empty( $posts ) ) {
 			echo '<h3>No posts found</h3>';
 		} else {
-			echo '<table><tr><th>Post ID</th><th>Excerpt</th></tr>';
+			echo '<table><tr><th>Post ID</th><th>Post Title</th><th>Excerpt</th></tr>';
 			foreach ( $posts as $post ) {
 				$excerpt = get_post_meta( $post->ID, '_a06_post_excerpt_field_value', true );
 				if ( ! empty( $excerpt ) ) {
-					echo "<tr><td>$post->ID</td><td>$excerpt</td></tr>";
+					echo "<tr><td>$post->ID</td><td>$post->post_title</td><td>$excerpt</td></tr>";
+				} else {
+					echo "<tr><td>$post->ID</td><td>$post->post_title</td><td>{empty}</td></tr>";
 				}
 			}
 			echo '</table>';
