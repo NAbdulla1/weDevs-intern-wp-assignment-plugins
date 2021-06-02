@@ -8,6 +8,7 @@ namespace A02_Posts_View_Counter\Frontend;
  * @package A02_Posts_View_Counter\Frontend
  */
 class View_Counter {
+	private $custom_action_hook_for_emphasize_once = 'a02_posts_view_emphasize_count';
 
 	/**
 	 * View_Counter constructor.
@@ -15,7 +16,12 @@ class View_Counter {
 	public function __construct() {
 		add_filter( 'the_content', [ $this, 'add_view_count' ], 10, 1 );
 		add_filter( 'a02_posts_view_view_counter_hook', [ $this, 'emphasise_count_value' ], 10, 1 );
-		add_action( 'a02_posts_count_increase_count', array( $this, 'update_and_get_view_count' ) );
+		add_action( 'a02_posts_count_increase_count', function () {
+			//ignored
+		} );
+		add_action( $this->custom_action_hook_for_emphasize_once, function () {
+			//ignored
+		} );
 	}
 
 	/**
@@ -84,7 +90,12 @@ class View_Counter {
 			 || ( strlen( $count ) >= 5 && substr( $count, - 5 ) === '</em>' ) ) {
 			return $count;
 		}*/
+		if ( did_action( $this->custom_action_hook_for_emphasize_once ) === 0 ) {
+			do_action( $this->custom_action_hook_for_emphasize_once );
 
-		return "<em>$count</em>";
+			return "<em>$count</em>";
+		}
+
+		return $count;
 	}
 }
