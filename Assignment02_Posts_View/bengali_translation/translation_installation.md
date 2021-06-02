@@ -1,6 +1,7 @@
 First create a pot file with the command:
 
-`wp <plugin-root-dir> <pot-file-destination-file-name> [other options if necessary]`
+`wp i18n <plugin-root-dir> <pot-file-destination-file-name> [other options if necessary]`
+(here `wp` is the alias of `wp-cli`)
 
 Then open file with **PoEdit** or other software and do translation.
 save the translation files `*.po` and `*.mo` extension.
