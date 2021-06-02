@@ -32,6 +32,9 @@ class Email_Notifier {
 		}
 	}
 
+	/**
+	 * @param $post_object
+	 */
 	private function send_email_to_admins( $post_object ) {
 		$admins = get_users( "role=Administrator" );
 		for ( $i = 0; $i < count( $admins ); $i ++ ) {
@@ -41,6 +44,9 @@ class Email_Notifier {
 		}
 	}
 
+	/**
+	 * @param $post_object
+	 */
 	private function send_email_to_others( $post_object ) {
 		foreach ( $this->other_user_emails as $user_email ) {
 			Log::dbg( 'sending email to user: ' . $user_email );

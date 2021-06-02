@@ -20,12 +20,18 @@ require_once __DIR__ . '/vendor/autoload.php';
  * Class Assignment03_Posts_Email_Notification
  */
 final class Assignment03_Posts_Email_Notification {
+	/**
+	 * Assignment03_Posts_Email_Notification constructor.
+	 */
 	private function __construct() {
 		register_activation_hook( __FILE__, [ $this, 'activate' ] );
 		register_deactivation_hook( __FILE__, [ $this, 'deactivate' ] );
 		add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
 	}
 
+	/**
+	 * @return Assignment03_Posts_Email_Notification|false
+	 */
 	public static function init() {
 		static $instance = false;
 		if ( ! $instance ) {
@@ -35,6 +41,9 @@ final class Assignment03_Posts_Email_Notification {
 		return $instance;
 	}
 
+	/**
+	 * Do actions after plugin loaded
+	 */
 	public function init_plugin() {
 		new \A03_Posts_Email_Notification\Email_Notifier();
 		$this->register_other_users();
@@ -42,6 +51,9 @@ final class Assignment03_Posts_Email_Notification {
 		new \A03_Posts_Email_Notification\CapitalizeTitle();
 	}
 
+	/**
+	 * Register other users, this is to simulate action of custom action hook
+	 */
 	public function register_other_users() {
 		do_action( 'a03_add_other_user_email', [
 			'user1@abc.com',
@@ -50,19 +62,31 @@ final class Assignment03_Posts_Email_Notification {
 		] );//apply custom hook
 	}
 
+	/**
+	 * Register a cron job at the activation
+	 */
 	public function activate() {
 		$daily_notifier = new \A03_Posts_Email_Notification\Daily_Notifier_Cron_Job();
-		$daily_notifier->startScheduler();
+		$daily_notifier->start_cron_scheduler();
 	}
 
+	/**
+	 * Deregister the cron job at deactivation
+	 */
 	public function deactivate() {
 		$daily_notifier = new \A03_Posts_Email_Notification\Daily_Notifier_Cron_Job();
-		$daily_notifier->stopScheduler();
+		$daily_notifier->stop_cron_scheduler();
 	}
 }
 
+/**
+ * Helper function
+ */
 function a03_posts_email_notification() {
 	Assignment03_Posts_Email_Notification::init();
 }
 
+/**
+ * Entry Point of plugin
+ */
 a03_posts_email_notification();

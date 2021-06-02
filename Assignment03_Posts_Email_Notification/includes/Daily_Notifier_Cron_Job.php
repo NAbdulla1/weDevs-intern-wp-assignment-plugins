@@ -3,13 +3,23 @@
 
 namespace A03_Posts_Email_Notification;
 
+/**
+ * Class Daily_Notifier_Cron_Job
+ * @package A03_Posts_Email_Notification
+ */
 class Daily_Notifier_Cron_Job {
+	/**
+	 * Daily_Notifier_Cron_Job constructor.
+	 */
 	public function __construct() {
 		if ( ! has_action( "a03_pen_daily_notifier_hook" ) ) {
 			add_action( 'a03_pen_daily_notifier_hook', array( $this, 'notify' ) );
 		}
 	}
 
+	/**
+	 * Notifier hook callback function
+	 */
 	public function notify() {
 		$summ = $this->summary();
 
@@ -19,7 +29,10 @@ class Daily_Notifier_Cron_Job {
 		Log::dbg( 'next scheduled at ' . date( 'c', $timestamp ) );
 	}
 
-	public function startScheduler() {
+	/**
+	 * Starting a cron scheduler to run after midnight
+	 */
+	public function start_cron_scheduler() {
 		$timestamp = strtotime( 'today midnight' ) + 1;
 		if ( ! wp_next_scheduled( 'a03_pen_daily_notifier_hook' ) ) {
 			$succ = wp_schedule_event( $timestamp, 'daily', 'a03_pen_daily_notifier_hook', array(), true );
@@ -30,7 +43,10 @@ class Daily_Notifier_Cron_Job {
 		}
 	}
 
-	public function stopScheduler() {
+	/**
+	 * Stopping the previously started scheduler
+	 */
+	public function stop_cron_scheduler() {
 		$timestamp = wp_next_scheduled( 'a03_pen_daily_notifier_hook' );
 		Log::dbg( 'scheduler ending... next scheduled ' . date( 'c', $timestamp ) );
 		if ( $timestamp !== false ) {
