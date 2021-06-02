@@ -1,0 +1,72 @@
+# Copyright (C) 2021 Md. Abdulla Al Mamun
+# This file is distributed under the GPL2.
+msgid ""
+msgstr ""
+"Project-Id-Version: Assignment02 Posts View 1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/"
+"Assignment02_Posts_View\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-06-02T09:29:11+02:00\n"
+"PO-Revision-Date: 2021-06-02 13:39+0600\n"
+"X-Generator: Poedit 2.4.3\n"
+"X-Domain: a02_posts_view_textdomain\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
+"Language: bn_BD\n"
+
+#. Plugin Name of the plugin
+msgid "Assignment02 Posts View"
+msgstr "অ্যাসাইনমেন্ট০২ পোস্ট দেখা সংখ্যা"
+
+#. Plugin URI of the plugin
+msgid ""
+"https://github.com/NAbdulla1/weDevs-intern-wp-assignment-"
+"plugins/tree/main/Assignment02_Posts_View"
+msgstr ""
+
+#. Description of the plugin
+msgid "A plugin to count posts view"
+msgstr "পোস্ট কত বার দেখা হয়েছে তা গণনা করার জন্য একটি প্লাগইন"
+
+#. Author of the plugin
+msgid "Md. Abdulla Al Mamun"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://github.com/NAbdulla1"
+msgstr ""
+
+#: includes/Frontend/Post_View_Filter.php:70
+msgid "All Categories"
+msgstr "সব ক্যাটেগরি"
+
+#: includes/Frontend/Post_View_Filter.php:95
+msgid "Ascending"
+msgstr "উর্ধ্বক্রম"
+
+#: includes/Frontend/Post_View_Filter.php:97
+msgid "Descending"
+msgstr "অধঃক্রম"
+
+#: includes/Frontend/Post_View_Filter.php:118
+msgid "Filter"
+msgstr "ফিল্টার"
+
+#: includes/Frontend/Post_View_Filter.php:124
+msgid "No posts found"
+msgstr "কোন পোস্ট পাওয়া যায়নি"
+
+#: includes/Frontend/Post_View_Filter.php:129
+msgid "Post ID"
+msgstr "পোস্ট আইডি"
+
+#: includes/Frontend/Post_View_Filter.php:131
+msgid "Title"
+msgstr "শিরোনাম"
+
+#: includes/Frontend/Post_View_Filter.php:133
+msgid "View Count"
+msgstr "দেখার সংখ্যা"
